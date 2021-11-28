@@ -18,24 +18,23 @@ void display(vector<t> vec);
 
 // Algorithm to complete
 void solve(vector<string> vec){
-    sort(vec.begin(), vec.end());
-    string smallestToCheck = vec[0];
-    string currLongestPrefix = smallestToCheck;
-
-    for(int idx = 0; idx < vec.size(); idx++){
-        int i = 0;
-        int len = currLongestPrefix.length();
-        if(vec[idx].length() > 0){
-            while(i < len){
-                if(vec[idx][i] != currLongestPrefix[i]){
-                    currLongestPrefix = vec[idx][i-1];
-                    break;
-                }
-                i++;
-            }
-        }
-    }
-    cout<<currLongestPrefix;
+    int n = vec.size(), minLen, i=0;
+    string ans, first, last;
+       if(n == 0){
+           cout<<"No String";
+       }else if(n == 1){
+           cout<<vec[0];
+       }
+       sort(vec.begin(), vec.end());
+       minLen = min(vec[0].length(), vec[n-1].length());
+       first = vec[0];
+       last = vec[n-1];
+       while( i<minLen && first[i] == last[i]){
+           i++;
+       }
+        ans = first.substr(0, i);
+        
+      cout<<ans;
 }
 
 // No use here created just for my testing functions
